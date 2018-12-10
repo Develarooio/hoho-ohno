@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 var speed
-var dash_speed = 1100
-var default_speed = 400
+export var dash_speed = 1100
+export var default_speed = 400
 var can_dash = true
 
 func _ready():
