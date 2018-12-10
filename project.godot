@@ -17,6 +17,10 @@ config/icon="res://icon.png"
 
 GAME_STATE="*res://game_state.gd"
 
+[display]
+
+window/size/height=768
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
