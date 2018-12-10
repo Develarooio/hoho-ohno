@@ -4,7 +4,7 @@ var score
 var insanity
 var difficulty
 var player_health
-
+var MAX_INSANITY = 100
 
 func _ready():
 	score = 0
@@ -16,7 +16,12 @@ func adjust_score(delta):
 	score += delta
 
 func adjust_insanity(delta):
-	insanity += delta
+	if (insanity + delta) <= 0:
+		insanity = 0
+	elif (insanity + delta) > MAX_INSANITY:
+		insanity = MAX_INSANITY
+	else:
+		insanity += delta
 
 func adjust_difficulty(delta):
 	difficulty += delta
