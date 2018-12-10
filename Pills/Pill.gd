@@ -16,4 +16,11 @@ func _ready():
 func _on_Pill_body_entered(body):
 	if body.is_in_group('players'):
 		GAME_STATE.adjust_insanity(pill_strength)
-		queue_free()
+		visible = false
+		call_deferred("set_monitoring", false)
+		$RespawnTimer.start()
+
+
+func _on_RespawnTimer_timeout():
+	visible = true
+	call_deferred("set_monitoring", true)
