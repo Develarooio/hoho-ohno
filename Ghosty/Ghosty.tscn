@@ -20,7 +20,7 @@ script = ExtResource( 1 )
 
 scale = Vector2( 0.09125, 0.09125 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
