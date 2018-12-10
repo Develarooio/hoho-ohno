@@ -1,17 +1,11 @@
 extends Area2D
 
 export var pill_strength = 25
+export var spawn_range_start = 5
+export var spawn_range_end = 10
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-
+	$RespawnTimer.wait_time = rand_range(spawn_range_start, spawn_range_end)
 
 func _on_Pill_body_entered(body):
 	if body.is_in_group('players'):
@@ -24,3 +18,4 @@ func _on_Pill_body_entered(body):
 func _on_RespawnTimer_timeout():
 	visible = true
 	call_deferred("set_monitoring", true)
+	$RespawnTimer.wait_time = rand_range(spawn_range_start, spawn_range_end)

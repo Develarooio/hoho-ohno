@@ -33,5 +33,7 @@ position = Vector2( 440, 393 )
 [node name="Pill" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 753, 240 )
+spawn_range_start = 5
+spawn_range_end = 10
 
 

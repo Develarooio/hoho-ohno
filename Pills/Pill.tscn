@@ -22,6 +22,8 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 pill_strength = 25
+spawn_range_start = 5
+spawn_range_end = 10
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
