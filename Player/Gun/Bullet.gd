@@ -6,12 +6,7 @@ extends Area2D
 export var speed = 25
 var direction
 
-func _ready():
-	print("bullet ready")
-	pass
-
 func _process(delta):
-	print(direction)
 	position += direction * speed
 
 

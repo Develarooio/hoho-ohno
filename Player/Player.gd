@@ -4,6 +4,7 @@ var speed
 export var dash_speed = 1100
 export var default_speed = 400
 var can_dash = true
+var can_shoot = true
 var aiming
 
 func _ready():
@@ -15,8 +16,10 @@ func _process(delta):
 	shoot()
 
 func shoot():
-	if Input.is_action_just_pressed('shoot'):
+	if Input.is_action_just_pressed('shoot') and can_shoot:
+		can_shoot = false
 		$Gun.shoot(aiming)
+		$ShootCoolDown.start()
 
 func aim():
 	var mouse_pos = get_global_mouse_position()
@@ -50,3 +53,7 @@ func _on_DashDuration_timeout():
 
 func _on_DashCoolDown_timeout():
 	can_dash = true
+
+
+func _on_ShootCoolDown_timeout():
+	can_shoot = true

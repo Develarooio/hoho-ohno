@@ -45,8 +45,17 @@ autostart = false
 
 [node name="Gun" parent="." index="4" instance=ExtResource( 3 )]
 
+[node name="ShootCoolDown" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 0.4
+one_shot = false
+autostart = false
+
 [connection signal="timeout" from="DashCoolDown" to="." method="_on_DashCoolDown_timeout"]
 
 [connection signal="timeout" from="DashDuration" to="." method="_on_DashDuration_timeout"]
+
+[connection signal="timeout" from="ShootCoolDown" to="." method="_on_ShootCoolDown_timeout"]
 
 
