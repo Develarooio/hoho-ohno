@@ -1,0 +1,2 @@
+extends Node
+#Global State
