@@ -24,4 +24,22 @@ texture = ExtResource( 2 )
 
 shape = SubResource( 1 )
 
+[node name="DashCoolDown" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 0.6
+one_shot = false
+autostart = false
+
+[node name="DashDuration" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="DashCoolDown" to="." method="_on_DashCoolDown_timeout"]
+
+[connection signal="timeout" from="DashDuration" to="." method="_on_DashDuration_timeout"]
+
 

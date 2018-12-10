@@ -1,11 +1,12 @@
 extends KinematicBody2D
 
-var speed = 350
+var speed
+var dash_speed = 1100
+var default_speed = 400
+var can_dash = true
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	speed = default_speed
 
 func _process(delta):
 	move()
@@ -20,5 +21,18 @@ func move():
 		direction.y = -1
 	if Input.is_action_pressed('down'):
 		direction.y = 1
+	if Input.is_action_just_pressed('dash') and can_dash:
+		speed = dash_speed
+		can_dash = false
+		$DashDuration.start()
 	
 	move_and_slide(direction.normalized() * speed)
+
+func _on_DashDuration_timeout():
+	speed = default_speed
+	if $DashCoolDown.is_stopped():
+		$DashCoolDown.start()
+
+
+func _on_DashCoolDown_timeout():
+	can_dash = true
