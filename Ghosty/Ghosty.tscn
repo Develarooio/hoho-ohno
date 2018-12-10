@@ -49,4 +49,22 @@ audio_bus_name = "Master"
 shape = SubResource( 2 )
 _sections_unfolded = [ "Visibility" ]
 
+[node name="LungeTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.6
+one_shot = false
+autostart = false
+
+[node name="LungeCooldown" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="LungeTimer" to="." method="_on_LungeTimer_timeout"]
+
+[connection signal="timeout" from="LungeCooldown" to="." method="_on_LungeCooldown_timeout"]
+
 

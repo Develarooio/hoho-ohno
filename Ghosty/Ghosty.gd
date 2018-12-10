@@ -6,6 +6,11 @@ var dir =  Vector2(rand_range(-100,100), rand_range(-100,100))
 var moving = true
 var ray_hits = []
 
+# lunging
+var lunge_direction = null
+var LUNGE_SPEED = 5
+var can_lunge = true
+
 func _can_see_player():
 	for b in $SiteArea.get_overlapping_bodies():
 		if b.get_name() == "Player":
@@ -30,7 +35,7 @@ func has_los_with_player_body(body):
 	var ne_corner = Vector2((body_pos.x + extents.x), (body_pos.y - extents.y))
 	var se_corner = body_pos + extents
 
-	for pos in [body_pos , nw_corner, sw_corner, ne_corner, se_corner]:
+	for pos in [body_pos, nw_corner, sw_corner, ne_corner, se_corner]:
 		var ray_res = space_state.intersect_ray(global_position, pos, [self])
 		if ray_res and ray_res["collider"].get_name() == "Player":
 			ray_hits.append(ray_res.position)
@@ -41,17 +46,27 @@ func has_los_with_player_body(body):
 	else:
 		return false
 	
-
+func _lunge(dir):
+	$LungeTimer.start()
+	can_lunge = false
+	lunge_direction = dir
 
 func _process(delta):
-	print(ray_hits)
-	print(_can_see_player())
+	
+	var transparency = GAME_STATE.insanity / GAME_STATE.MAX_INSANITY
+	$GhostySprite.set_modulate(Color(1,1,1,transparency))
+	
+	# Early return if lunging
+	if lunge_direction:
+		move_and_slide(-lunge_direction * LUNGE_SPEED)
+		return
+		
+	if _can_see_player() and can_lunge:
+		_lunge(global_position - ray_hits[0])
+		
 	if (rand_range(0,1) > 0.97):
 		moving = !moving
-		
-	var transparency = GAME_STATE.insanity / GAME_STATE.MAX_INSANITY
-	GAME_STATE.adjust_insanity(rand_range(-10,10))
-	$GhostySprite.set_modulate(Color(1,1,1,transparency))
+	
 	# Only change direction x% of the time where x is (1-DIR_CHANGE_LIKELIHOOD)*100
 	if (rand_range(0.0,1.0) > DIR_CHANGE_LIKELIHOOD):
 		dir.x = rand_range(-100,100)
@@ -62,3 +77,14 @@ func _process(delta):
 	if moving:
 		move_and_slide(dir * SPEED)
 	
+
+func _on_LungeTimer_timeout():
+	$LungeTimer.stop()
+	$LungeCooldown.start()
+	print("lunge over")
+	lunge_direction = null
+
+func _on_LungeCooldown_timeout():
+	$LungeCooldown.stop()
+	print("cooldowned")
+	can_lunge = true
