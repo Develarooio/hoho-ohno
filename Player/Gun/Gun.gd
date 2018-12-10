@@ -4,6 +4,8 @@ extends Node2D
 # var a = 2
 # var b = "textvar"
 
+var  bullet = preload("res://Player/Gun/Bullet.tscn")
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -15,4 +17,7 @@ func _ready():
 #	pass
 
 func shoot(angle):
-	pass
+	var new_bullet = bullet.instance()
+	get_tree().get_root().add_child(new_bullet)
+	new_bullet.set_direction(angle)
+	new_bullet.position = get_parent().position
