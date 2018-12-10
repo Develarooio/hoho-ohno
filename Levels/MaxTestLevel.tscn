@@ -33,6 +33,7 @@ tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, 65
 
 position = Vector2( 617, 618 )
 SPEED = 2
+GHOST_POWER = 1
 
 [node name="DebugTimer" parent="." index="2" instance=ExtResource( 3 )]
 
