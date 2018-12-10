@@ -1,11 +1,51 @@
 extends KinematicBody2D
 
 var DIR_CHANGE_LIKELIHOOD = 0.9
-var SPEED = 5
+export var SPEED = 5
 var dir =  Vector2(rand_range(-100,100), rand_range(-100,100))
 var moving = true
+var ray_hits = []
+
+func _can_see_player():
+	for b in $SiteArea.get_overlapping_bodies():
+		if b.get_name() == "Player":
+			return has_los_with_player_body(b)
+
+func draw_sight(cast_result):
+	draw_line(Vector2(), (cast_result - global_position), Color(1,0,0))
+	
+func _draw():
+	for hit in ray_hits:
+		draw_sight(hit)
+	
+func has_los_with_player_body(body):
+	# Cast some rays to see if there are obstacles between the player
+	# and the farmer
+	var space_state = get_world_2d().direct_space_state
+	var extents = body.get_collision_shape().extents
+	ray_hits.clear()
+	var body_pos = body.get_global_position()
+	var nw_corner = body_pos - extents
+	var sw_corner = Vector2((body_pos.x - extents.x), (body_pos.y + extents.y))
+	var ne_corner = Vector2((body_pos.x + extents.x), (body_pos.y - extents.y))
+	var se_corner = body_pos + extents
+
+	for pos in [body_pos , nw_corner, sw_corner, ne_corner, se_corner]:
+		var ray_res = space_state.intersect_ray(global_position, pos, [self])
+		if ray_res and ray_res["collider"].get_name() == "Player":
+			ray_hits.append(ray_res.position)
+
+	update()
+	if ray_hits.size() > 0:
+		return true
+	else:
+		return false
+	
+
 
 func _process(delta):
+	print(ray_hits)
+	print(_can_see_player())
 	if (rand_range(0,1) > 0.97):
 		moving = !moving
 		

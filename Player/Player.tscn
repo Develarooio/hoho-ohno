@@ -14,10 +14,11 @@ extents = Vector2( 64, 64 )
 ]]
 
 input_pickable = false
-collision_layer = 1
+collision_layer = 2
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "collision" ]
 dash_speed = 1100
 default_speed = 400
 
