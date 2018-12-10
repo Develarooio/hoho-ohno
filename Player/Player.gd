@@ -45,6 +45,9 @@ func move():
 	
 	move_and_slide(direction.normalized() * speed)
 
+func get_collision_shape():
+	return shape_owner_get_shape(0,0)
+
 func _on_DashDuration_timeout():
 	speed = default_speed
 	if $DashCoolDown.is_stopped():

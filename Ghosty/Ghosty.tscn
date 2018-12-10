@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Ghosty/Ghosty.gd" type="Script" id=1]
 [ext_resource path="res://Ghosty/ghost.png" type="Texture" id=2]
@@ -8,22 +8,97 @@
 custom_solver_bias = 0.0
 extents = Vector2( 72, 74 )
 
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 288.34
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 69, 73 )
+
 [node name="Ghosty" type="KinematicBody2D"]
 
 input_pickable = false
-collision_layer = 1
+collision_layer = 4
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+SPEED = 5
+GHOST_POWER = 1
 
 [node name="GhostySprite" type="Sprite" parent="." index="0"]
 
 scale = Vector2( 0.09125, 0.09125 )
+z_index = 10
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
+
+[node name="SiteArea" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SiteArea" index="0"]
+
+position = Vector2( 0, -2 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="LungeTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.6
+one_shot = true
+autostart = false
+
+[node name="LungeCooldown" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="GhostyArea" type="Area2D" parent="." index="5"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GhostyArea" index="0"]
+
+position = Vector2( -1, 0 )
+scale = Vector2( 1.01389, 1 )
+shape = SubResource( 3 )
+
+[node name="PlayerHitCooldown" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="LungeTimer" to="." method="_on_LungeTimer_timeout"]
+
+[connection signal="timeout" from="LungeCooldown" to="." method="_on_LungeCooldown_timeout"]
+
+[connection signal="body_entered" from="GhostyArea" to="." method="_on_GhostyArea_body_entered"]
+
+[connection signal="timeout" from="PlayerHitCooldown" to="." method="_on_PlayerHitCooldown_timeout"]
 
 
