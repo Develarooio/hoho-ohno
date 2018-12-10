@@ -18,7 +18,9 @@ radius = 288.34
 custom_solver_bias = 0.0
 extents = Vector2( 69, 73 )
 
-[node name="Ghosty" type="KinematicBody2D"]
+[node name="Ghosty" type="KinematicBody2D" groups=[
+"ghosties",
+]]
 
 input_pickable = false
 collision_layer = 4
