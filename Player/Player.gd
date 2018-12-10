@@ -4,12 +4,26 @@ var speed
 export var dash_speed = 1100
 export var default_speed = 400
 var can_dash = true
+var aiming
 
 func _ready():
 	speed = default_speed
 
 func _process(delta):
 	move()
+	aim()
+	shoot()
+
+func shoot():
+	if Input.is_action_just_pressed('shoot'):
+		$Gun.shoot(aiming)
+
+func aim():
+	var mouse_pos = get_global_mouse_position()
+	var aiming_vector = (mouse_pos - global_position)
+	if aiming_vector.length() > 10:
+		aiming = aiming_vector.angle() * 180/PI
+		$Gun.rotation_degrees = aiming 
 
 func move():
 	var direction = Vector2(0,0)
