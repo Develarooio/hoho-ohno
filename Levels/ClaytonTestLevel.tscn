@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Tilesets/walls.tres" type="TileSet" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 
-[node name="ClaytonTestLevel" type="Node2D"]
+[node name="ClaytonTestLevel" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -22,6 +23,10 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, 65535, 0, 0, 0, 0, 0 )
+tile_data = PoolIntArray( 11, 0, 0, 12, 0, 0, 13, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 458755, 0, 0, 458764, 0, 0, 524291, 0, 0, 524300, 0, 0, 589827, 0, 0, 589835, 0, 0, 589836, 0, 0 )
+
+[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 440, 393 )
 
 
