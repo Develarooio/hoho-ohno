@@ -9,8 +9,7 @@ func _process(delta):
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("ghosties"):
-		#Hit dat ghost
-		pass
+		body.queue_free()
 	elif body.is_in_group("players"):
 		pass
 	else:
