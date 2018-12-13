@@ -22,7 +22,7 @@ func _can_see_player():
 func draw_sight(cast_result):
 	draw_line(Vector2(), (cast_result - global_position), Color(1,0,0))
 
-#draw the raycasts	
+	
 #func _draw():
 #	for hit in ray_hits:
 #		draw_sight(hit)
