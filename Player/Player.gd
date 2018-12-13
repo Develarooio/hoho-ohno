@@ -6,23 +6,49 @@ export var default_speed = 400
 var can_dash = true
 var can_shoot = true
 var aiming
-var laser_charge = 100
-export var laser_charge_increment = 15
+var laser_charge = 0
+export var laser_charge_increment = 3
+
+var can_charge = true
+
+var shooting = false
 
 func _ready():
 	speed = default_speed
 
 func _process(delta):
+	$Label.text = "Charge:" + str(laser_charge)
 	move()
 	aim()
 	shoot()
 
 func shoot():
-	if Input.is_action_just_pressed('shoot') and can_shoot:
+	if Input.is_action_pressed('shoot') and laser_charge > 0:
+		print("trying to shoot")
+		can_charge = false
+		shooting = true
 		$Gun.enable_laser()
 
 	if Input.is_action_just_released('shoot'):
+		$ShootCoolDown.start()
+		shooting = false
 		$Gun.disable_laser()
+	
+	if laser_charge == 0:
+		$Gun.disable_laser()
+
+	if shooting:
+		if laser_charge >= 0:
+			if laser_charge - laser_charge_increment < 0:
+				laser_charge = 0
+			else:
+				laser_charge -= laser_charge_increment
+	elif can_charge:
+		if laser_charge < 100:
+			if laser_charge + laser_charge_increment > 100:
+				laser_charge = 100
+			else:
+				laser_charge += laser_charge_increment
 
 func aim():
 	var mouse_pos = get_global_mouse_position()
@@ -62,4 +88,4 @@ func _on_DashCoolDown_timeout():
 
 
 func _on_ShootCoolDown_timeout():
-	can_shoot = true
+	can_charge = true

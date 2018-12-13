@@ -4,7 +4,7 @@
 [ext_resource path="res://Player/Gun/gun_placeholder.png" type="Texture" id=2]
 [ext_resource path="res://Player/Gun/bullet_placeholder.png" type="Texture" id=3]
 
-[node name="Gun" type="Node2D" index="0"]
+[node name="Gun" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
