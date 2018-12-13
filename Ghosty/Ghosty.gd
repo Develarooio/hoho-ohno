@@ -57,7 +57,7 @@ func _lunge(dir):
 
 func _process(delta):
 	
-	var transparency = GAME_STATE.insanity / GAME_STATE.MAX_INSANITY
+	var transparency = GAME_STATE.insanity / float(GAME_STATE.MAX_INSANITY)
 	$GhostySprite.set_modulate(Color(1,1,1,transparency))
 	
 	# Early return if lunging
