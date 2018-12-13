@@ -9,7 +9,6 @@ func _ready():
 	$SpawnTimer.wait_time = get_spawn_time()
 
 func _process(delta):
-	print($SpawnTimer.wait_time)
 	if $SpawnTimer.is_stopped():
 		$SpawnTimer.start()
 
