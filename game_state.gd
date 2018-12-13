@@ -8,7 +8,7 @@ var MAX_INSANITY = 100
 
 func _ready():
 	score = 0
-	insanity = 0
+	insanity = 80
 	difficulty = 0
 	player_health = 3
 
