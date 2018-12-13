@@ -166,7 +166,9 @@ _sections_unfolded = [ "Collision" ]
 SPEED = 5
 GHOST_POWER = 1
 
-[node name="GhostySprite" type="Sprite" parent="." index="0"]
+[node name="GhostySprite" type="Sprite" parent="." index="0" groups=[
+"ghosties",
+]]
 
 light_mask = 4100
 z_index = 10
@@ -229,7 +231,9 @@ _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Visib
 shape = SubResource( 11 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="SiteArea" type="Area2D" parent="." index="2"]
+[node name="SiteArea" type="Area2D" parent="." index="2" groups=[
+"ghosties",
+]]
 
 show_behind_parent = true
 input_pickable = true
@@ -261,7 +265,9 @@ wait_time = 1.0
 one_shot = true
 autostart = false
 
-[node name="GhostyArea" type="Area2D" parent="." index="5"]
+[node name="GhostyArea" type="Area2D" parent="." index="5" groups=[
+"ghosties",
+]]
 
 show_behind_parent = true
 input_pickable = true

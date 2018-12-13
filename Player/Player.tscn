@@ -10,7 +10,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 64, 64 )
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "players",
 ]]
 
@@ -22,6 +22,7 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "collision" ]
 dash_speed = 1100
 default_speed = 400
+laser_charge_increment = 15
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
