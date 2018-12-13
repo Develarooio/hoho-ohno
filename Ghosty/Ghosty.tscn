@@ -1,27 +1,162 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Ghosty/Ghosty.gd" type="Script" id=1]
-[ext_resource path="res://Ghosty/ghost.png" type="Texture" id=2]
+[ext_resource path="res://Ghosty/Monster - v1.png" type="Texture" id=2]
+[ext_resource path="res://Ghosty/0005.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Gradient" id=1]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.71875, 0.71875, 0.71875, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+
+flags = 4
+gradient = SubResource( 1 )
+width = 2048
+
+[sub_resource type="Gradient" id=3]
+
+offsets = PoolRealArray( 0.0591716, 0.183432 )
+colors = PoolColorArray( 0.8125, 0.8125, 0.8125, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+
+flags = 4
+gradient = SubResource( 3 )
+width = 2048
+
+[sub_resource type="Curve" id=5]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.751536, 0.0488281 ), -5.03102, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+
+flags = 4
+width = 2048
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+
+render_priority = 0
+trail_divisor = 2
+trail_size_modifier = SubResource( 6 )
+trail_color_modifier = SubResource( 4 )
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 30, 0 )
+initial_velocity = 40.0
+initial_velocity_random = 1.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 4.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.5
+scale_random = 1.0
+color_ramp = SubResource( 2 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Damping", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Scale", "Spread", "Trail" ]
+
+[sub_resource type="Curve" id=8]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 1.03102, 0, 0, Vector2( 0.734767, 0 ), -5.82494, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+
+flags = 4
+width = 2048
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+
+render_priority = 0
+trail_divisor = 2
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 80, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 5.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 1.0
+scale_curve = SubResource( 9 )
+color = Color( 0.484375, 0.113525, 0.113525, 0.0497255 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Damping", "Scale" ]
+
+[sub_resource type="CapsuleShape2D" id=11]
 
 custom_solver_bias = 0.0
-extents = Vector2( 72, 74 )
+radius = 54.5316
+height = 20.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=12]
 
 custom_solver_bias = 0.0
 radius = 288.34
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=13]
 
 custom_solver_bias = 0.0
-extents = Vector2( 69, 73 )
+radius = 54.947
+height = 20.0
 
 [node name="Ghosty" type="KinematicBody2D" groups=[
 "ghosties",
 ]]
 
+show_behind_parent = true
 input_pickable = false
 collision_layer = 4
 collision_mask = 1
@@ -33,17 +168,71 @@ GHOST_POWER = 1
 
 [node name="GhostySprite" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 0.09125, 0.09125 )
+light_mask = 4100
 z_index = 10
+z_as_relative = false
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
+[node name="Particles2D2" type="Particles2D" parent="GhostySprite" index="0"]
+
+show_behind_parent = true
+light_mask = 4103
+position = Vector2( 0, -6.09854 )
+scale = Vector2( 1, 1.19058 )
+emitting = true
+amount = 1200
+lifetime = 1.25
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 7 )
+texture = ExtResource( 3 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Visibility" ]
+
+[node name="Particles2D" type="Particles2D" parent="GhostySprite" index="1"]
+
+position = Vector2( 0, -6.76196 )
+scale = Vector2( 1, 1.21131 )
+emitting = true
+amount = 300
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 0.5
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 10 )
+texture = ExtResource( 3 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Visibility" ]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-shape = SubResource( 1 )
+visible = false
+shape = SubResource( 11 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="SiteArea" type="Area2D" parent="." index="2"]
 
+show_behind_parent = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -51,11 +240,13 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SiteArea" index="0"]
 
+visible = false
 position = Vector2( 0, -2 )
-shape = SubResource( 2 )
+shape = SubResource( 12 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="LungeTimer" type="Timer" parent="." index="3"]
@@ -74,6 +265,8 @@ autostart = false
 
 [node name="GhostyArea" type="Area2D" parent="." index="5"]
 
+visible = false
+show_behind_parent = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -81,12 +274,14 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GhostyArea" index="0"]
 
+visible = false
 position = Vector2( -1, 0 )
 scale = Vector2( 1.01389, 1 )
-shape = SubResource( 3 )
+shape = SubResource( 13 )
 
 [node name="PlayerHitCooldown" type="Timer" parent="." index="6"]
 
