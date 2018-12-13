@@ -24,7 +24,6 @@ func _process(delta):
 
 func shoot():
 	if Input.is_action_pressed('shoot') and laser_charge > 0:
-		print("trying to shoot")
 		can_charge = false
 		shooting = true
 		$Gun.enable_laser()
