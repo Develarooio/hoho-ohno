@@ -152,7 +152,7 @@ custom_solver_bias = 0.0
 radius = 54.947
 height = 20.0
 
-[node name="Ghosty" type="KinematicBody2D" index="0" groups=[
+[node name="Ghosty" type="KinematicBody2D" groups=[
 "ghosties",
 ]]
 
@@ -226,7 +226,6 @@ _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Visib
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-visible = false
 shape = SubResource( 11 )
 _sections_unfolded = [ "Transform" ]
 
@@ -244,7 +243,6 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SiteArea" index="0"]
 
-visible = false
 position = Vector2( 0, -2 )
 shape = SubResource( 12 )
 _sections_unfolded = [ "Visibility" ]
@@ -265,7 +263,6 @@ autostart = false
 
 [node name="GhostyArea" type="Area2D" parent="." index="5"]
 
-visible = false
 show_behind_parent = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -278,7 +275,6 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GhostyArea" index="0"]
 
-visible = false
 position = Vector2( -1, 0 )
 scale = Vector2( 1.01389, 1 )
 shape = SubResource( 13 )
