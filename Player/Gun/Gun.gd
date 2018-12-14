@@ -13,9 +13,6 @@ func _process(delta):
 		scale_laser($RayCast2D.get_collision_point())
 		if collider.is_in_group('ghosties'):
 			collider.queue_free()
-	else:
-		$Laser.scale.x = 100
-
 
 #Shoot Bullets
 #func shoot(angle):
@@ -25,9 +22,8 @@ func _process(delta):
 #	new_bullet.position = get_parent().position
 
 func scale_laser(pos):
-	var distance = abs((global_position.x - pos.x))
-	print(distance)
-	$Laser.scale.x = distance/$Laser.texture.get_width()
+	var distance = Vector2(global_position.x - pos.x, global_position.y - pos.y)
+	$Laser.scale.x = distance.length()/$Laser.texture.get_width()
 
 func get_laser_collision():
 	var collider = null 

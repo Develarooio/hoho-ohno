@@ -1,28 +1,28 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player/Gun/Gun.gd" type="Script" id=1]
-[ext_resource path="res://Player/Gun/gun_placeholder.png" type="Texture" id=2]
-[ext_resource path="res://Player/Gun/bullet_placeholder.png" type="Texture" id=3]
+[ext_resource path="res://Player/Gun/bullet_placeholder.png" type="Texture" id=2]
+[ext_resource path="res://Player/Gun/gun_placeholder.png" type="Texture" id=3]
 
 [node name="Gun" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="Laser" type="Sprite" parent="." index="0"]
 
-texture = ExtResource( 2 )
-centered = false
-_sections_unfolded = [ "Offset", "Transform" ]
-
-[node name="Laser" type="Sprite" parent="." index="1"]
-
-position = Vector2( 128, 6 )
+position = Vector2( 0, 6 )
 scale = Vector2( 1, 0.2 )
 z_index = -1
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 3 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="2"]
 

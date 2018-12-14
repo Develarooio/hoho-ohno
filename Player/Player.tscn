@@ -22,7 +22,7 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "collision" ]
 dash_speed = 1100
 default_speed = 400
-laser_charge_increment = 3
+laser_charge_increment = 2
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

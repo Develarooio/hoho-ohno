@@ -7,7 +7,7 @@ var can_dash = true
 var can_shoot = true
 var aiming
 var laser_charge = 0
-export var laser_charge_increment = 3
+export var laser_charge_increment = 2
 
 var can_charge = true
 
