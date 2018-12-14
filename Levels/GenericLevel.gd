@@ -1,11 +1,5 @@
 extends Node2D
 
-
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
 func _process(delta):
 	if game_over():
 		game_over_message()
@@ -15,6 +9,7 @@ func game_over():
 		$GameOverCamera.position = $Player.get_camera_position()
 		$GameOverCamera.current = true
 		$Player.deactivate()
+		$GameBeat.stop()
 		return true
 	else:
 		return false
