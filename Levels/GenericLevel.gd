@@ -3,6 +3,9 @@ extends Node2D
 func _process(delta):
 	if game_over():
 		game_over_message()
+		if Input.is_action_pressed('retry'):
+			#Just go to main menu
+			pass
 
 func game_over():
 	if GAME_STATE.player_health <= 0:
