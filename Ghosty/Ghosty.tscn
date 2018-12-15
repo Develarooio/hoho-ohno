@@ -152,7 +152,7 @@ custom_solver_bias = 0.0
 radius = 54.947
 height = 20.0
 
-[node name="Ghosty" type="KinematicBody2D" index="0" groups=[
+[node name="Ghosty" type="KinematicBody2D" groups=[
 "ghosties",
 ]]
 
