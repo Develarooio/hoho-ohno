@@ -144,7 +144,7 @@ height = 20.0
 [sub_resource type="CircleShape2D" id=12]
 
 custom_solver_bias = 0.0
-radius = 288.34
+radius = 469.001
 
 [sub_resource type="CapsuleShape2D" id=13]
 
@@ -162,7 +162,7 @@ collision_layer = 4
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 SPEED = 5
 GHOST_POWER = 1
 

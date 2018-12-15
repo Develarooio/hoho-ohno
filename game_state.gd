@@ -4,11 +4,11 @@ var score
 var insanity
 var difficulty
 var player_health
-var MAX_INSANITY = 100
+var MAX_INSANITY = 60
 
 func _ready():
 	score = 0
-	insanity = 0
+	insanity = 100
 	difficulty = 0
 	player_health = 3
 
