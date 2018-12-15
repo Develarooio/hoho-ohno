@@ -12,15 +12,17 @@ export var laser_charge_increment = 2
 var can_charge = true
 
 var shooting = false
+var active = true
 
 func _ready():
 	speed = default_speed
 
 func _process(delta):
-	$Label.text = "Charge:" + str(laser_charge)
-	move()
-	aim()
-	shoot()
+	if active:
+		$Label.text = "Charge:" + str(laser_charge)
+		move()
+		aim()
+		shoot()
 
 func shoot():
 	if Input.is_action_pressed('shoot') and laser_charge > 0:
@@ -88,3 +90,10 @@ func _on_DashCoolDown_timeout():
 
 func _on_ShootCoolDown_timeout():
 	can_charge = true
+
+func get_camera_position():
+	return $Camera2D.global_position
+
+func deactivate():
+	active = false
+	hide()
