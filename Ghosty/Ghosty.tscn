@@ -152,7 +152,7 @@ custom_solver_bias = 0.0
 radius = 54.947
 height = 20.0
 
-[node name="Ghosty" type="KinematicBody2D" groups=[
+[node name="Ghosty" type="KinematicBody2D" index="0" groups=[
 "ghosties",
 ]]
 
@@ -184,7 +184,7 @@ position = Vector2( 0, -6.09854 )
 scale = Vector2( 1, 1.19058 )
 emitting = true
 amount = 1200
-lifetime = 1.25
+lifetime = 0.4
 one_shot = false
 preprocess = 0.0
 speed_scale = 1.0
@@ -192,7 +192,7 @@ explosiveness = 0.0
 randomness = 0.0
 fixed_fps = 0
 fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
+visibility_rect = Rect2( -100, -100, 1100, 700 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 7 )
@@ -208,7 +208,7 @@ position = Vector2( 0, -6.76196 )
 scale = Vector2( 1, 1.21131 )
 emitting = true
 amount = 300
-lifetime = 1.0
+lifetime = 0.15
 one_shot = false
 preprocess = 0.0
 speed_scale = 0.5
@@ -216,7 +216,7 @@ explosiveness = 0.0
 randomness = 0.0
 fixed_fps = 0
 fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
+visibility_rect = Rect2( -100, -100, 1100, 700 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 10 )

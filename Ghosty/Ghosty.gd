@@ -91,7 +91,6 @@ func _process(delta):
 func update_sprite_direction():
 	var moving_vector = global_position - previous_position
 	rotation_degrees = (moving_vector.angle() * 180/PI + 90)
-	print(rotation_degrees)
 
 func _on_LungeTimer_timeout():
 	$LungeCooldown.start()
@@ -109,5 +108,4 @@ func _on_GhostyArea_body_entered(body):
 
 
 func _on_PlayerHitCooldown_timeout():
-	print("cooled down")
 	can_hit_player = true
