@@ -56,8 +56,7 @@ func aim():
 	var aiming_vector = (mouse_pos - global_position)
 	if aiming_vector.length() > 10:
 		aiming = aiming_vector.angle() * 180/PI
-		$Gun.rotation_degrees = aiming
-
+		rotation_degrees = aiming + 90
 func move():
 	var direction = Vector2(0,0)
 	if Input.is_action_pressed('right'):
