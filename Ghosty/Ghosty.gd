@@ -14,6 +14,9 @@ var can_lunge = true
 
 var can_hit_player = true
 
+var facing_rotation = 0
+var previous_position = Vector2(0,0)
+
 func _can_see_player():
 	for b in $SiteArea.get_overlapping_bodies():
 		if b.get_name() == "Player":
@@ -58,6 +61,9 @@ func _lunge(dir):
 
 func _process(delta):
 	
+	update_sprite_direction()
+	previous_position = global_position
+	
 	var transparency = GAME_STATE.insanity / float(GAME_STATE.MAX_INSANITY)
 	$GhostySprite.set_modulate(Color(1,1,1,transparency))
 	
@@ -81,7 +87,10 @@ func _process(delta):
 	
 	if moving:
 		move_and_slide(dir * SPEED)
-	
+		
+func update_sprite_direction():
+	var moving_vector = global_position - previous_position
+	rotation_degrees = (moving_vector.angle() * 180/PI + 90)
 
 func _on_LungeTimer_timeout():
 	$LungeCooldown.start()
@@ -99,5 +108,4 @@ func _on_GhostyArea_body_entered(body):
 
 
 func _on_PlayerHitCooldown_timeout():
-	print("cooled down")
 	can_hit_player = true
