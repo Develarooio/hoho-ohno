@@ -23,7 +23,7 @@ func _process(delta):
 
 func scale_laser(pos):
 	var distance = Vector2(global_position.x - pos.x, global_position.y - pos.y)
-	$Laser.scale.x = distance.length()/$Laser.texture.get_width()
+	$Laser.scale.y = distance.length()/$Laser.texture.get_height()
 
 func get_laser_collision():
 	var collider = null 

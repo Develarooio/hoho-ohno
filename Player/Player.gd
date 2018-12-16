@@ -18,6 +18,11 @@ func _ready():
 	speed = default_speed
 
 func _process(delta):
+	if can_dash:
+		$RedPack.hide()
+	else:
+		$RedPack.show()
+
 	if active:
 		$Label.text = "Charge:" + str(laser_charge)
 		move()
@@ -28,14 +33,17 @@ func shoot():
 	if Input.is_action_pressed('shoot') and laser_charge > 0:
 		can_charge = false
 		shooting = true
+		$FiringSprite.show()
 		$Gun.enable_laser()
 
 	if Input.is_action_just_released('shoot'):
 		$ShootCoolDown.start()
 		shooting = false
+		$FiringSprite.hide()
 		$Gun.disable_laser()
 	
 	if laser_charge == 0:
+		$FiringSprite.hide()
 		$Gun.disable_laser()
 
 	if shooting:
@@ -70,7 +78,8 @@ func move():
 	if Input.is_action_just_pressed('dash') and can_dash:
 		speed = dash_speed
 		can_dash = false
-		$DashDuration.start()
+		if $DashDuration.is_stopped():
+			$DashDuration.start()
 	
 	move_and_slide(direction.normalized() * speed)
 
