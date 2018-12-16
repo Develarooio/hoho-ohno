@@ -6,6 +6,8 @@ func _process(delta):
 		if Input.is_action_pressed('retry'):
 			get_tree().change_scene("res://MainMenu.tscn")
 			GAME_STATE.reload()
+	
+	$UI.assign_charge($Player.get_laser_charge())
 
 func game_over():
 	if GAME_STATE.player_health <= 0:

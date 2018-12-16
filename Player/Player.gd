@@ -105,3 +105,6 @@ func get_camera_position():
 func deactivate():
 	active = false
 	hide()
+
+func get_laser_charge():
+	return laser_charge
