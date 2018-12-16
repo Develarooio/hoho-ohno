@@ -33,14 +33,17 @@ func shoot():
 	if Input.is_action_pressed('shoot') and laser_charge > 0:
 		can_charge = false
 		shooting = true
+		$FiringSprite.show()
 		$Gun.enable_laser()
 
 	if Input.is_action_just_released('shoot'):
 		$ShootCoolDown.start()
 		shooting = false
+		$FiringSprite.hide()
 		$Gun.disable_laser()
 	
 	if laser_charge == 0:
+		$FiringSprite.hide()
 		$Gun.disable_laser()
 
 	if shooting:
