@@ -4,7 +4,7 @@
 [ext_resource path="res://Player/Gun/lazermid.png" type="Texture" id=2]
 [ext_resource path="res://Player/Gun/gun_placeholder.png" type="Texture" id=3]
 
-[node name="Gun" type="Node2D" index="0"]
+[node name="Gun" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility" ]
@@ -27,7 +27,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="2"]
 
-position = Vector2( 128, 8 )
+position = Vector2( 60, 24 )
 rotation = 4.71239
 scale = Vector2( 1, 100 )
 enabled = false
@@ -35,8 +35,5 @@ exclude_parent = true
 cast_to = Vector2( 0, 50 )
 collision_mask = 6
 _sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
 
 
