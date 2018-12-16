@@ -29,11 +29,12 @@ size_flags_vertical = 1
 
 [node name="ScoreBoard" parent="Control" index="0" instance=ExtResource( 1 )]
 
+modulate = Color( 0, 0, 0, 1 )
 margin_left = 924.0
 margin_top = 10.0
 margin_right = 924.0
 margin_bottom = 24.0
-_sections_unfolded = [ "Margin" ]
+_sections_unfolded = [ "Margin", "Visibility" ]
 
 [node name="HealthBoard" type="Label" parent="Control" index="1"]
 
