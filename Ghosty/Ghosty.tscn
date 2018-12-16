@@ -144,7 +144,7 @@ height = 20.0
 [sub_resource type="CircleShape2D" id=12]
 
 custom_solver_bias = 0.0
-radius = 469.001
+radius = 370.005
 
 [sub_resource type="CapsuleShape2D" id=13]
 
@@ -152,7 +152,7 @@ custom_solver_bias = 0.0
 radius = 54.947
 height = 20.0
 
-[node name="Ghosty" type="KinematicBody2D" groups=[
+[node name="Ghosty" type="KinematicBody2D" index="0" groups=[
 "ghosties",
 ]]
 
