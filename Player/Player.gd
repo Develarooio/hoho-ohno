@@ -18,6 +18,11 @@ func _ready():
 	speed = default_speed
 
 func _process(delta):
+	if can_dash:
+		$RedPack.hide()
+	else:
+		$RedPack.show()
+
 	if active:
 		$Label.text = "Charge:" + str(laser_charge)
 		move()
@@ -70,7 +75,8 @@ func move():
 	if Input.is_action_just_pressed('dash') and can_dash:
 		speed = dash_speed
 		can_dash = false
-		$DashDuration.start()
+		if $DashDuration.is_stopped():
+			$DashDuration.start()
 	
 	move_and_slide(direction.normalized() * speed)
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Elf stand.png" type="Texture" id=2]
-[ext_resource path="res://Player/Gun/Gun.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player/Camera2D.gd" type="Script" id=4]
-[ext_resource path="res://Player/AnimationPlayer.gd" type="Script" id=5]
+[ext_resource path="res://Player/back_pack_red.png" type="Texture" id=3]
+[ext_resource path="res://Player/Gun/Gun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Camera2D.gd" type="Script" id=5]
+[ext_resource path="res://Player/AnimationPlayer.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -30,7 +31,7 @@ tracks/0/keys = {
 "values": [ 2, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ]
 }
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "players",
 ]]
 
@@ -51,29 +52,35 @@ hframes = 17
 frame = 13
 _sections_unfolded = [ "Animation", "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="RedPack" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 3 )
+hframes = 17
+_sections_unfolded = [ "Animation" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
 shape = SubResource( 1 )
 
-[node name="DashCoolDown" type="Timer" parent="." index="2"]
+[node name="DashCoolDown" type="Timer" parent="." index="3"]
 
 process_mode = 1
 wait_time = 0.6
-one_shot = false
+one_shot = true
 autostart = false
 
-[node name="DashDuration" type="Timer" parent="." index="3"]
+[node name="DashDuration" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 0.1
-one_shot = false
+one_shot = true
 autostart = false
 
-[node name="Gun" parent="." index="4" instance=ExtResource( 3 )]
+[node name="Gun" parent="." index="5" instance=ExtResource( 4 )]
 
 rotation = -1.5708
 
-[node name="Camera2D" type="Camera2D" parent="." index="5"]
+[node name="Camera2D" type="Camera2D" parent="." index="6"]
 
 anchor_mode = 1
 rotating = false
@@ -97,18 +104,18 @@ drag_margin_bottom = 0.0
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 _sections_unfolded = [ "Drag Margin", "Limit", "Smoothing" ]
 shake_multiplier = 3
 
-[node name="ShootCoolDown" type="Timer" parent="." index="6"]
+[node name="ShootCoolDown" type="Timer" parent="." index="7"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = false
 
-[node name="Label" type="Label" parent="." index="7"]
+[node name="Label" type="Label" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -130,7 +137,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -139,7 +146,7 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/player_anim = SubResource( 2 )
 blend_times = [  ]
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Playback Options" ]
 
 [connection signal="timeout" from="DashCoolDown" to="." method="_on_DashCoolDown_timeout"]
