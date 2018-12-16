@@ -12,6 +12,7 @@ func _process(delta):
 	if collider != null:
 		scale_laser($RayCast2D.get_collision_point())
 		if collider.is_in_group('ghosties'):
+			GAME_STATE.adjust_score(10)
 			collider.queue_free()
 
 #Shoot Bullets
